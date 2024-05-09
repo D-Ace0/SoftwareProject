@@ -5,16 +5,16 @@ require('dotenv').config();
 const connectDB = require('./connection/conn')
 const productsRoutes = require('./routes/product');
 const ordersRoutes = require('./routes/orders')
-// const AdminRoutes = require('./routes/admin')
-const main = require('./routes/main')
+const login = require('./routes/login')
+const register = require('./routes/register')
 
 app.use(express.json())
 
 
-app.use('/api/login', main)
- app.use('/api/product', productsRoutes);
-// app.use('/api/admin', AdminRoutes);
-app.use('/api/order', ordersRoutes);
+app.use('/api/v1/login', login)
+app.use('/api/v1/register',register)
+ app.use('/api/v1/product', productsRoutes);
+app.use('/api/v1/order', ordersRoutes);
 
 const PORT = process.env.PORT || 3000;
 const start = async () => {

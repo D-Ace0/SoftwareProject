@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { addToCart, removeFromCart } = require('../controllers/orders.js');
-const authenticateToken = require('../middleware/authentication_Handler');
+const authenticateToken = require('../middleware/authentication_Handler.js');
 
 // Add order (for customers only)
 router.post('/', authenticateToken, addToCart);  //
