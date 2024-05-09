@@ -24,15 +24,6 @@ const CustomerSchema = new mongoose.Schema({
     ]
 });
 
-
-// CustomerSchema.methods.isValidPassword = async function(password) {
-//     try {
-//         return await password === this.password;
-//     } catch (error) {
-//         throw new Error(error);
-//     }
-// };
-
 const Customer = mongoose.model('customer', CustomerSchema);
 
 const AdminSchema = new mongoose.Schema({
