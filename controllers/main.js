@@ -31,8 +31,8 @@ const register = async (req, res) => {
     const { name, email, password } = req.body;
 
     // Check if email is empty or doesn't contain '@'
-    if (!email || !email.includes('@')) {
-        return res.status(400).json({ msg: 'Invalid email format' });
+    if (!email) {
+        return res.status(400).json({ msg: 'Invalid email format'});
     }
 
     // Check if email already exists
