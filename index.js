@@ -6,13 +6,13 @@ const connectDB = require('./connection/conn')
 const productsRoutes = require('./routes/product');
 const ordersRoutes = require('./routes/orders')
 // const AdminRoutes = require('./routes/admin')
-const {login,register} = require('./routes/main')
+const main = require('./routes/main')
+
 app.use(express.json())
 
 
-app.use('/api/login', login)
-app.use('/api/register', register)
-app.use('/api/product', productsRoutes);
+app.use('/api/login', main)
+ app.use('/api/product', productsRoutes);
 // app.use('/api/admin', AdminRoutes);
 app.use('/api/order', ordersRoutes);
 

@@ -23,7 +23,7 @@ const addToCart = async (req, res) => {
         await Customer.findByIdAndUpdate(userID, { $addToSet: { shoppingCart: { productId: product._id } } });
         res.status(200).json({ 
             msg: 'Product added to the shopping cart successfully',
-            NumberOfProducts: customer.shoppingCart.length,
+            NumberOfProducts: customer.shoppingCart.length +1,
             cartDetail: customer.shoppingCart.map(item => ({
                 productId: item.productId,
             })),

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { Customer, Admin } = require('../../../SoftwareProject/models/Prosche_Schema');
+const { Customer, Admin } = require('../models/Prosche_Schema');
 require('express-async-errors');
 
 const login = async (req, res) => {
@@ -29,6 +29,11 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
     const { name, email, password } = req.body;
+
+    // Check if email is empty or doesn't contain '@'
+    if (!email || !email.includes('@')) {
+        return res.status(400).json({ msg: 'Invalid email format' });
+    }
 
     // Check if email already exists
     const existingCustomer = await Customer.findOne({ email });

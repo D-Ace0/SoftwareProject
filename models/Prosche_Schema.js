@@ -36,7 +36,9 @@ const CustomerSchema = new mongoose.Schema({
 const Customer = mongoose.model('customer', CustomerSchema);
 
 const AdminSchema = new mongoose.Schema({
-    name: String,
+    first_name: String,
+    last_name:String,
+    address:String,
     email: String,
     password: String
 });
