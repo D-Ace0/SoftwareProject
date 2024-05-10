@@ -27,12 +27,22 @@ const login = async (req, res) => {
     res.status(200).json({ token: token, role: role });
 };
 
+
+function isValidEmail(email) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+}
+
 const register = async (req, res) => {
     const { name, email, password } = req.body;
 
     // Check if email is empty or doesn't contain '@'
-    if (!email) {
-        return res.status(400).json({ msg: 'Invalid email format' });
+    if (!email || !name || !password) {
+        return res.status(400).json({ msg: 'Missing values in the body' });
+    }
+
+    if(!isValidEmail(email)){
+        return res.status(400).json({msg: 'invalid email format'})
     }
 
     // Check if email already exists
