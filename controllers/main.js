@@ -19,9 +19,11 @@ const login = async (req, res) => {
     } else {
         const customer = await Customer.findOne({ email: email });
         if (!customer || !(password == customer.password)) {
-            res.status(401).json({ msg: "Invalid username or password" });
+
+           return  res.status(401).json({ msg: "Invalid username or password" });
         }
         userID = customer._id;
+
     }
     const token = jwt.sign({ userID, role }, process.env.JWT_SECRET, { expiresIn: '30d' });
     res.status(200).json({ token: token, role: role });
