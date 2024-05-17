@@ -56,7 +56,31 @@ const removeFromCart = async (req, res) => {
     }
 };
 
+
+const getAllFromCart = async (req, res) => {
+    try {
+        const { userID, role } = req.user;
+
+        // Check if the user is a customer
+        if (role !== 'customer') {
+            return res.status(403).json({ msg: 'Only customers can view the shopping cart' });
+        }
+
+        let user = await Customer.findOne({ _id: userID });
+        if (user.shoppingCart.length === 0) {
+            return res.status(405).json({ msg: 'Your cart is empty', cartDetail: user.shoppingCart });
+        }
+
+        res.status(200).json({ cartDetail: user.shoppingCart });
+    } catch (error) {
+        console.error('Error fetching products from the shopping cart:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
 module.exports = {
     addToCart,
-    removeFromCart
+    removeFromCart,
+    getAllFromCart
 };
