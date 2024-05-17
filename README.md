@@ -3,4 +3,4 @@
 
 
 - [x] Milestone 1 (✓)
-- [ ] Milestone 2 (pending)
+- [x] Milestone 2 (✓)
